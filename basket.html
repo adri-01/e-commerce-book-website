@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Basket - Adrian's Bookshop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+     <!-- Header -->
+    <nav>
+        <!-- left side -->
+        <div id="left-navbar">
+            <img class="icons" src="images/icons/book.png" alt="logo">
+            <h3>Adrian's Bookshop</h3>
+        </div>
+        <!-- right side -->
+        <div id="right-navbar">
+                <!-- Mobile -->
+            <div class="hamburger">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <!-- Desktop -->
+            <ul class="nav-buttons">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="#About Us">ABOUT US</a></li>
+                <li><a href="#Contact Us">CONTACT US</a></li>
+                <li><a href="basket.html">
+                    <img class="icons" src="images/icons/trolley.png" alt="basket">
+                    <h6>Basket</h6>
+                </a></li>
+                <li><a href="#SignIn">
+                    <img class="icons" src="images/icons/login.png" alt="Sign In">
+                    <h6>LOGIN</h6>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <main class="basket-container">
+        <h1>Your Shopping Basket</h1>
+        
+        <div id="basket-items"></div>
+
+        <div class="basket-summary">
+            <h3>Total: $<span id="total-price">0.00</span></h3>
+            <button id="clear-cart">Clear Basket</button>
+            <button id="checkout-btn">Proceed to Checkout</button>
+        </div>
+        <a href="index.html">Back to Shop</a>
+    </main>
+</body>
+</html>

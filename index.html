@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
         <script src="js/script.js" defer></script>
-        <title>First Page</title>
+        <title>BookShop Home</title>
     </head>
 
 
@@ -20,34 +20,74 @@
             </div>
             <!-- right side -->
             <div id="right-navbar">
-                <!-- Desktop -->
-                <div class="desktop">
-                    <ul class="nav-buttons">
-                       <li><a href="#Home">HOME</a></li>
-                       <li><a href="#About Us">ABOUT US</a></li>
-                       <li><a href="#Contact Us">CONTACT US</a></li>
-                       <li><a href="#Basket">
-                           <img class="icons" src="images/icons/trolley.png" alt="basket">
-                           <h6>Basket</h6>
-                       </a></li>
-                       <li><a href="#SignIn">
-                           <img class="icons" src="images/icons/login.png" alt="Sign In">
-                           <h6>LOGIN</h6>
-                       </a></li>
-                    </ul>
-                </div>
                  <!-- Mobile -->
-                <div class="mobile">
+                <div class="hamburger">
                     <div class="bar"></div>
                     <div class="bar"></div>
                     <div class="bar"></div>
                 </div>
+                <!-- Desktop -->
+                <ul class="nav-buttons">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="#About Us">ABOUT US</a></li>
+                    <li><a href="#Contact Us">CONTACT US</a></li>
+                    <li><a href="basket.html">
+                        <img class="icons" src="images/icons/trolley.png" alt="basket">
+                        <h6>Basket</h6>
+                    </a></li>
+                    <li><a href="#SignIn">
+                        <img class="icons" src="images/icons/login.png" alt="Sign In">
+                        <h6>LOGIN</h6>
+                    </a></li>
+                </ul>
             </div>
         </nav>
 
 
         <!-- Main content -->
-        <!-- Footer -->
+        <main>
+            <h1 id="booklist-titke">Booklist</h1>
+            <ul id="booklist">
+                <li>
+                    <img class="book-cover" src="images/books/The_Bro_Cpde.jpg" alt="Book">
+                    <div class="book-info">
+                        <h2 class="book-title">The Bro Code</h2>
+                        <p class="book-text">The Bro Code is a humor book inspired by the TV show How I Met Your Mother and written by Matt Kuhn. It presents a fictional “code” of rules that bros should follow in friendship, dating, and everyday life. Narrated by the character Barney Stinson, the book mixes comedy, exaggerated advice, and absurd life lessons. The rules are intentionally over-the-top and meant for entertainment rather than serious guidance. Fans enjoy it for its witty style, references to the show, and playful take on male friendships and social behavior.</p>
+                        <button class="show-more-btn">Show More</button>
+                        <button class="add-btn" data-title="The Bro Code" data-price="15.00" data-img="images/books/The_Bro_Cpde.jpg">Add to cart</button>
+                    </div>
+                </li>
+                <li>
+                    <img class="book-cover" src="" alt="Book">
+                    <div class="book-info">
+                        <h2 class="book-title">The Bro Code</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa non nostrum accusantium sit, quis sint suscipit? Placeat laudantium tempore, praesentium, nam asperiores, iste sequi ratione blanditiis quis iusto quod tenetur.</p>
+                        <button class="add-btn">Add to cart</button>
+                    </div>
+                </li>
+                <li>
+                    <img class="book-cover" src="" alt="Book">
+                    <div class="book-info">
+                        <h2 class="book-title">The Bro Code</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa non nostrum accusantium sit, quis sint suscipit? Placeat laudantium tempore, praesentium, nam asperiores, iste sequi ratione blanditiis quis iusto quod tenetur.</p>
+                        <button class="add-btn">Add to cart</button>
+                    </div>
+                </li>
+                <li>
+                    <img class="book-cover" src="" alt="Book">
+                    <div class="book-info">
+                        <h2 class="book-title">The Bro Code</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa non nostrum accusantium sit, quis sint suscipit? Placeat laudantium tempore, praesentium, nam asperiores, iste sequi ratione blanditiis quis iusto quod tenetur.</p>
+                        <button class="add-btn">Add to cart</button>
+                    </div>
+                </li>
+            </ul>
+        </main>
 
+        
+        <!-- Footer -->
+        <footer>
+            <h4> Adrian Figura</h4>
+        </footer>
     </body>
 </html>
