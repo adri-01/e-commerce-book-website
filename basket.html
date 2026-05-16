@@ -13,35 +13,38 @@
 
      <!-- Header -->
     <nav>
-        <!-- left side -->
-        <div id="left-navbar">
-            <img class="icons" src="images/icons/book.png" alt="logo">
-            <h3>Adrian's Bookshop</h3>
-        </div>
-        <!-- right side -->
-        <div id="right-navbar">
-                <!-- Mobile -->
-            <div class="hamburger">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
+            <!-- left side -->
+            <div id="left-navbar">
+                <img class="icons" src="images/icons/book.png" alt="logo">
+                <h3>Adrian's Bookshop</h3>
             </div>
-            <!-- Desktop -->
-            <ul class="nav-buttons">
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="#About Us">ABOUT US</a></li>
-                <li><a href="#Contact Us">CONTACT US</a></li>
-                <li><a href="basket.html">
-                    <img class="icons" src="images/icons/trolley.png" alt="basket">
-                    <h6>Basket</h6>
-                </a></li>
-                <li><a href="#SignIn">
-                    <img class="icons" src="images/icons/login.png" alt="Sign In">
-                    <h6>LOGIN</h6>
-                </a></li>
-            </ul>
-        </div>
-    </nav>
+            <!-- right side -->
+            <div id="right-navbar">
+                 <!-- Mobile -->
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <!-- Desktop -->
+                <ul class="nav-buttons">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="#About Us">ABOUT US</a></li>
+                    <li><a href="#Contact Us">CONTACT US</a></li>
+                    <li><a href="basket.html">
+                        <img class="icons" src="images/icons/trolley.png" alt="basket">
+                        <div id="lower-basket-icon">
+                            <h6>Basket</h6>
+                            <span id="basket-icon" class="basket-count" data-count="0"></span>
+                        </div>
+                    </a></li>
+                    <li><a href="#SignIn">
+                        <img class="icons" src="images/icons/login.png" alt="Sign In">
+                        <h6>LOGIN</h6>
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
 
 
     <main class="basket-container">
@@ -51,7 +54,7 @@
 
         <div class="basket-summary">
             <h3>Total: $<span id="total-price">0.00</span></h3>
-            <button id="clear-cart">Clear Basket</button>
+            <button id="clear-cart">x Clear Basket x</button>
             <button id="checkout-btn">Proceed to Checkout</button>
         </div>
         <a href="index.html">Back to Shop</a>

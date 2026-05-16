@@ -5,7 +5,7 @@ let menuOpen = false;
 // navbar
 if (hamburger && navButtons) {
     hamburger.addEventListener("click", () => {
-        if(!menuOpen){
+        if (!menuOpen) {
             navButtons.style.display = "flex";
             menuOpen = true;
         } else {
@@ -15,28 +15,55 @@ if (hamburger && navButtons) {
     });
 }
 
+// Update basket count
+function updateBasketCount() {
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+    const itemCount = cart.length;
 
-const bookInfos = document.querySelectorAll(".book-info");
+    const basketIcon = document.querySelector("#basket-icon");
 
-bookInfos.forEach(container => {
-    const text = container.querySelector(".book-text");
-    const btn = container.querySelector(".show-more-btn");
+    if (basketIcon) {
+        basketIcon.setAttribute("data-count", itemCount);
 
-    if (!text || !btn) return;
-    if (text.scrollHeight > text.clientHeight) {
-        btn.style.display = "inline-block";
-        
-        btn.addEventListener("click", () => {
-            text.classList.toggle("expanded");
-            
-            if (text.classList.contains("expanded")) {
-                btn.textContent = "Show Less";
-            } else {
-                btn.textContent = "Show More";
-                container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }
-        });
+        basketIcon.textContent = itemCount;
     }
+}
+
+// Home page
+window.addEventListener("load", () => { // On page load
+    updateBasketCount();
+
+    const bookInfos = document.querySelectorAll(".book-info");
+
+    bookInfos.forEach(container => {
+        const text = container.querySelector(".book-text");
+        const btn = container.querySelector(".show-more-btn");
+
+        if (!text || !btn) return;
+
+        if (text.scrollHeight > text.clientHeight + 1) {
+            btn.style.display = "flex";
+            btn.style.justifyContent = "flex-end";
+                btn.style.marginTop = "0px";
+
+                btn.addEventListener("click", () => {
+                    text.classList.toggle("expanded");
+
+                    if (text.classList.contains("expanded")) {
+                        btn.textContent = "Show Less";
+                    } else {
+                        btn.textContent = "Show More";
+
+                        container.scrollIntoView({
+                            behavior: "smooth",
+                            block: "nearest"
+                        });
+                    }
+                });
+         } else {
+             btn.style.display = "none";
+        }
+    });
 });
 
 const addButtons = document.querySelectorAll(".add-btn");
@@ -52,6 +79,8 @@ addButtons.forEach(btn => {
         let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
         cart.push(book);
         sessionStorage.setItem("cart", JSON.stringify(cart));
+
+        updateBasketCount();
 
         alert(`${book.title} added to basket!`);
     });
@@ -69,14 +98,12 @@ if (basketContainer && totalDisplay) {
     function displayBasket() {
         const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
         basketContainer.innerHTML = "";
-        let total = 0;
+        
 
         if (cart.length === 0) {
             basketContainer.innerHTML = "<p>Your basket is currently empty.</p>";
         } else {
             cart.forEach((item, index) => {
-                total += item.price;
-
                 const itemDiv = document.createElement("div");
                 itemDiv.classList.add("basket-item");
 
@@ -90,7 +117,7 @@ if (basketContainer && totalDisplay) {
                         <p>$${item.price.toFixed(2)}</p>
                     </div>
 
-                    <button class="remove-btn">Remove</button>
+                    <button class="remove-btn">x Remove x</button>
                 `;
 
             itemDiv.querySelector(".remove-btn")
@@ -101,7 +128,7 @@ if (basketContainer && totalDisplay) {
             basketContainer.appendChild(itemDiv);
             });
         }
-        totalDisplay.textContent = total.toFixed(2);
+        totalDisplay.textContent = calculateTotal().toFixed(2);
     }
 
     // remove a single item
@@ -111,6 +138,7 @@ if (basketContainer && totalDisplay) {
         sessionStorage.setItem("cart", JSON.stringify(cart));
         // Refresh the list
         displayBasket(); 
+        updateBasketCount();
         CheckCartEmpty();
     };
 
@@ -120,6 +148,7 @@ if (basketContainer && totalDisplay) {
             sessionStorage.removeItem("cart");
             // Refresh UI after clearing
             displayBasket(); 
+            updateBasketCount();
             CheckCartEmpty();
         });
     }
@@ -127,6 +156,19 @@ if (basketContainer && totalDisplay) {
     // Run on page load
     displayBasket();
 }
+
+
+function calculateTotal() {
+    const cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+    // Use reduce to sum up prices, or a simple loop that resets to 0
+    let currentTotal = 0;
+    cart.forEach(item => {
+        currentTotal += item.price;
+    });
+    return currentTotal;
+}
+
+
 
 const checkoutBtn = document.getElementById("checkout-btn");
 
@@ -162,6 +204,40 @@ const paymentBtn = document.querySelector(".payment-btn");
 
 // Only run if paymentBtn exists
 if (paymentBtn) {
+    const totalDisplay = document.getElementById("total-price");
+    let total = calculateTotal().toFixed(2)
+    totalDisplay.textContent = total;
+
+    // payment input restriction
+    const cardInput = document.querySelector(".card-number");
+    const cvvInput = document.querySelector(".cvv-input input");
+
+    if (cardInput) {
+        cardInput.addEventListener("input", (e) => {
+            let value = e.target.value.replace(/\D/g, "");// Remove all non-digits
+
+            if (value.length > 16) {
+                value = value.slice(0, 16); //Limit to 16 digits
+            }
+            const formattedValue = value.match(/.{1,4}/g)?.join(" ") || ""; // Add space every 4 digits
+            e.target.value = formattedValue;
+        });
+    }
+
+    if (cvvInput) {
+        cvvInput.addEventListener("input", (e) => {
+            let value = e.target.value.replace(/\D/g, ""); // Remove all non-digits
+            if (value.length > 4) {
+                value = value.slice(0, 4); // Limit to 4 digits
+            }
+
+            e.target.value = value;
+        });
+    }
+
+    
+
+    // payment input validation
     paymentBtn.addEventListener("click", async (e) => {
         e.preventDefault(); // Prevent form from refreshing the page
         const cardNumber = document.querySelector(".card-number").value.replace(/\s+/g, ''); // Remove spaces
@@ -173,29 +249,42 @@ if (paymentBtn) {
         const currentMonth = now.getMonth() + 1;
         const currentYear = now.getFullYear();
 
-        let errors = [];
 
-        // 16 digits and starts with 51-55 (Mastercard)
+        const cardError = document.getElementById("card-error");
+        const dateError = document.getElementById("date-error");
+        const cvvError = document.getElementById("cvv-error");
+
+        // Clear all previous errors every time continue button is pressed
+        cardError.textContent = "";
+        dateError.textContent = "";
+        cvvError.textContent = "";
+
+        let hasError = false; 
+
+        // card number must be 16 digits and starts with 51-55
         const mastercardRegex = /^5[1-5][0-9]{14}$/;
         if (!mastercardRegex.test(cardNumber)) {
-            errors.push("Invalid Mastercard number. Must be 16 digits and start with 51-55.");
+            cardError.textContent = "Invalid Mastercard number. Must be 16 digits and start with 51-55.";
+            hasError = true;
         }
 
-        // Not expired
+        // Date Validation 
         if (expYear < currentYear || (expYear === currentYear && expMonth < currentMonth)) {
-            errors.push("The card has expired.");
+            dateError.textContent = "The card has expired.";
+            hasError = true;
         }
 
-        // CVV 3 or 4 digits
+        // CVV Validation (3 or 4 digits)
         if (cvv.length < 3 || cvv.length > 4 || isNaN(cvv)) {
-            errors.push("CVV must be 3 or 4 digits.");
+            cvvError.textContent = "CVV must be 3 or 4 digits.";
+            hasError = true;
         }
 
-        // If fails
-        if (errors.length > 0) {
-            alert("Validation Errors:\n" + errors.join("\n"));
-            return;
+        // return if there is an error
+        if (hasError) {
+            return; 
         }
+
 
         const paymentData = {
             master_card: parseInt(cardNumber),
@@ -219,8 +308,16 @@ if (paymentBtn) {
 
             if (response.status === 200) {
                 alert(result.message);
+                const paymentInfo = {
+                    cardNumber: "**** **** **** " + cardNumber.slice(-4),
+                    total: total,
+                    date: now.getDate() + "/" + (now.getMonth() + 1) + "/" + now.getFullYear(),
+                    time: now.getHours() + ":" + now.getMinutes()
+                };
+                sessionStorage.setItem("paymentInfo", JSON.stringify(paymentInfo));
                 sessionStorage.removeItem("cart"); // Clear basket after payment
-                window.location.href = "index.html"; // Send them home
+                updateBasketCount();
+                window.location.href = "success.html"; // Send to confirmation page
             } else {
                 alert("Server Error: " + (result.message || "Invalid data submitted."));
             }
@@ -230,4 +327,14 @@ if (paymentBtn) {
             console.error("Fetch error:", error);
         }
     });
+}
+
+// Success page
+const paymentInfo = JSON.parse(sessionStorage.getItem("paymentInfo"));
+
+if (paymentInfo) {
+    document.querySelector(".card-number").textContent = paymentInfo.cardNumber;
+    document.querySelector(".date").textContent = paymentInfo.date;
+    document.querySelector(".time").textContent = paymentInfo.time;
+    document.querySelector(".total").textContent = paymentInfo.total;
 }

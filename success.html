@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Basket - Adrian's Bookshop</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+
+     <!-- Header -->
+    <nav>
+            <!-- left side -->
+            <div id="left-navbar">
+                <img class="icons" src="images/icons/book.png" alt="logo">
+                <h3>Adrian's Bookshop</h3>
+            </div>
+            <!-- right side -->
+            <div id="right-navbar">
+                 <!-- Mobile -->
+                <div class="hamburger">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <!-- Desktop -->
+                <ul class="nav-buttons">
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="#About Us">ABOUT US</a></li>
+                    <li><a href="#Contact Us">CONTACT US</a></li>
+                    <li><a href="basket.html">
+                        <img class="icons" src="images/icons/trolley.png" alt="basket">
+                        <div id="lower-basket-icon">
+                            <h6>Basket</h6>
+                            <span id="basket-icon" class="basket-count" data-count="0"></span>
+                        </div>
+                    </a></li>
+                    <li><a href="#SignIn">
+                        <img class="icons" src="images/icons/login.png" alt="Sign In">
+                        <h6>LOGIN</h6>
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
+
+    <main class="payment-container">
+        <h1>Thank you for your purchase!</h1>
+        <p>Your order has been successfully processed.</p>
+
+        <h2>Payment Summary</h2>
+        <div class="pay-summary">
+            <p>Card Number: <span class="card-number"></span></p>
+            <p>Date: <span class="date"></span></p>
+            <p>Time: <span class="time"></span></p>
+            <p>Total: $<span class="total"></span></p>
+        </div>
+        <a class="continue-link" href="index.html">Back to home</a>
+    </main>
+</body>
+</html>

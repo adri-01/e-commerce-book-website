@@ -33,7 +33,10 @@
                     <li><a href="#Contact Us">CONTACT US</a></li>
                     <li><a href="basket.html">
                         <img class="icons" src="images/icons/trolley.png" alt="basket">
-                        <h6>Basket</h6>
+                        <div id="lower-basket-icon">
+                            <h6>Basket</h6>
+                            <span id="basket-icon" class="basket-count" data-count="0"></span>
+                        </div>
                     </a></li>
                     <li><a href="#SignIn">
                         <img class="icons" src="images/icons/login.png" alt="Sign In">
@@ -49,7 +52,7 @@
             <h1 id="booklist-titke">Booklist</h1>
             <ul id="booklist">
                 <li>
-                    <img class="book-cover" src="images/books/The_Bro_Cpde.jpg" alt="Book">
+                    <img class="book-cover" src="images/books/The_Bro_Cpde.jpg" alt="image of The Bro Code">
                     <div class="book-info">
                         <h2 class="book-title">The Bro Code</h2>
                         <p class="book-text">The Bro Code is a humor book inspired by the TV show How I Met Your Mother and written by Matt Kuhn. It presents a fictional “code” of rules that bros should follow in friendship, dating, and everyday life. Narrated by the character Barney Stinson, the book mixes comedy, exaggerated advice, and absurd life lessons. The rules are intentionally over-the-top and meant for entertainment rather than serious guidance. Fans enjoy it for its witty style, references to the show, and playful take on male friendships and social behavior.</p>
@@ -58,27 +61,30 @@
                     </div>
                 </li>
                 <li>
-                    <img class="book-cover" src="" alt="Book">
+                    <img class="book-cover" src="images/books/The_Play_Book.jpg" alt="image of The Playbook">
                     <div class="book-info">
-                        <h2 class="book-title">The Bro Code</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa non nostrum accusantium sit, quis sint suscipit? Placeat laudantium tempore, praesentium, nam asperiores, iste sequi ratione blanditiis quis iusto quod tenetur.</p>
-                        <button class="add-btn">Add to cart</button>
+                        <h2 class="book-title">The Playbook</h2>
+                        <p class="book-text">The Playbook is a humorous tie-in book inspired by How I Met Your Mother and the famous episode of the same name. Written as if by Barney Stinson, it presents outrageous “plays” and fake identities designed to help men impress or trick women into dating them. The book exaggerates pickup culture for comedy, featuring absurd schemes like “The Lorenzo Von Matterhorn” and “Mrs. Stinsfire.” Fans enjoy it mainly for its jokes, references, and connection to the show rather than serious advice. It was published in 2010 as a companion to Barney's earlier book, The Bro Code.</p>
+                        <button class="show-more-btn">Show More</button>
+                        <button class="add-btn" data-title="The Playbook" data-price="10.00" data-img="images/books/The_Play_Book.jpg">Add to cart</button>
                     </div>
                 </li>
                 <li>
-                    <img class="book-cover" src="" alt="Book">
+                    <img class="book-cover" src="images/books/The_Bar_Book.jpg" alt="image of The Bar Book">
                     <div class="book-info">
-                        <h2 class="book-title">The Bro Code</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa non nostrum accusantium sit, quis sint suscipit? Placeat laudantium tempore, praesentium, nam asperiores, iste sequi ratione blanditiis quis iusto quod tenetur.</p>
-                        <button class="add-btn">Add to cart</button>
+                        <h2 class="book-title">The Bar Book</h2>
+                        <p class="book-text">The Bar Book is a comprehensive guide to cocktail recipes and bartending techniques, offering a mix of classic and contemporary drinks. It covers everything from the history of cocktails to the science of mixology, making it a valuable resource for both novice and experienced bartenders. The book features detailed instructions, tips for home bartending, and insights into the art of drink presentation.</p>
+                        <button class="show-more-btn">Show More</button>
+                        <button class="add-btn" data-title="The Bar Book" data-price="12.00" data-img="images/books/The_Bar_Book.jpg">Add to cart</button>
                     </div>
                 </li>
                 <li>
-                    <img class="book-cover" src="" alt="Book">
+                    <img class="book-cover" src="images/books/Sword_ofDestiny(Witcher).jpg" alt="image of Sword of Destiny">
                     <div class="book-info">
-                        <h2 class="book-title">The Bro Code</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa non nostrum accusantium sit, quis sint suscipit? Placeat laudantium tempore, praesentium, nam asperiores, iste sequi ratione blanditiis quis iusto quod tenetur.</p>
-                        <button class="add-btn">Add to cart</button>
+                        <h2 class="book-title">Sword of Destiny</h2>
+                        <p class="book-text">Sword of Destiny is a collection of short stories by Andrzej Sapkowski, set in the Witcher universe. It follows the adventures of Geralt of Rivia, a monster hunter navigating a world filled with magic, political intrigue, and moral ambiguity. The stories explore themes of destiny, love, and the nature of humanity, showcasing Sapkowski's rich storytelling and complex characters.</p>
+                        <button class="show-more-btn">Show More</button>
+                        <button class="add-btn" data-title="Sword of Destiny" data-price="10.00" data-img="images/books/Sword_ofDestiny(Witcher).jpg">Add to cart</button>
                     </div>
                 </li>
             </ul>

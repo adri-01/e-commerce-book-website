@@ -5,6 +5,19 @@ body {
 p{
   font-size: 18px;
 }
+button{
+  padding: 10px 15px;
+  background-color: transparent;
+  border: none;
+  color: #111;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+button:hover {
+  color: aqua;
+}
 
 
 
@@ -27,8 +40,9 @@ nav {
   gap: 10px;
 }h3 {
   margin: 0;
-  padding: 3vw;
+  padding-left: 3vw;
   color: #111;
+  font-weight: bold;
   font-size: x-large;
 }
 
@@ -38,6 +52,20 @@ nav {
   height: auto;
 }
 
+.basket-count {
+    background: red;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+#lower-basket-icon {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+}
 
 .nav-buttons {
   display: flex;
@@ -180,19 +208,26 @@ footer{
     border-bottom: 1px solid #eee;
 }
 
-.basket-summary, .pay-summary {
+.basket-summary, .checkout-summary {
     margin-top: 30px;
     text-align: right;
     border-top: 2px solid #333;
     padding-top: 20px;
 }
+.basket-details h4 {
+    margin-bottom: 20px;
+    font-size: 20px;
+}
 
-.checkout-btn {
+#checkout-btn {
     background-color: aqua;
     border: none;
     padding: 10px 20px;
     font-weight: bold;
     cursor: pointer;
+}
+#checkout-btn:hover {
+    color: black;
 }
 
 .checkout-img{
@@ -237,15 +272,8 @@ footer{
     line-height: 14px;
 }
  
-.card-number,
-.month select,
-.year select {
-    font-size: 14px;
-    font-weight: 100;
-    line-height: 14px;
-}
  
-.card-number {
+.form-body .card-number {
     width: 100%;
     margin-bottom: 20px;
     padding-left: 20px;
@@ -285,6 +313,49 @@ footer{
     margin-top: 0px;
 }
 
+.error-message {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    min-height: 15px;
+    font-weight: bold;
+}
+
+
+/* Checkout Summary */
+.pay-summary {
+    margin-top: 30px;
+    text-align: left;
+    border-top: 2px solid #333;
+    padding-top: 20px;
+}
+
+.continue-link , .payment-btn, .add-btn {
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+.add-btn{
+  display: flex ;
+  margin-left: 0;
+  float: center;
+}
+  
+
+.continue-link:hover , .payment-btn:hover, .add-btn:hover {
+    background-color: aqua;
+    color: black;
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
   /* Navbar */
@@ -300,7 +371,7 @@ footer{
 
   .hamburger {
     display: flex;
-    margin-left: 15.75%;
+    float: right;
     flex-direction: column;
     justify-content: center;
     gap: 4px;
