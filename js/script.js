@@ -331,8 +331,9 @@ if (paymentBtn) {
 
 // Success page
 const paymentInfo = JSON.parse(sessionStorage.getItem("paymentInfo"));
+const paySummary = document.querySelector(".pay-summary");
 
-if (paymentInfo) {
+if (paySummary) {
     document.querySelector(".card-number").textContent = paymentInfo.cardNumber;
     document.querySelector(".date").textContent = paymentInfo.date;
     document.querySelector(".time").textContent = paymentInfo.time;
