@@ -82,7 +82,7 @@ addButtons.forEach(btn => {
 
         updateBasketCount();
 
-        alert(`${book.title} added to basket!`);
+        showNotification(`${book.title} added to basket!`, true);
     });
 });
 
@@ -307,7 +307,7 @@ if (paymentBtn) {
             const result = await response.json();
 
             if (response.status === 200) {
-                alert(result.message);
+                showNotification(result.message);
                 const paymentInfo = {
                     cardNumber: "**** **** **** " + cardNumber.slice(-4),
                     total: total,
@@ -329,13 +329,63 @@ if (paymentBtn) {
     });
 }
 
+
+
 // Success page
-const paymentInfo = JSON.parse(sessionStorage.getItem("paymentInfo"));
 const paySummary = document.querySelector(".pay-summary");
 
 if (paySummary) {
+    const paymentInfo = JSON.parse(sessionStorage.getItem("paymentInfo"));
+
     document.querySelector(".card-number").textContent = paymentInfo.cardNumber;
     document.querySelector(".date").textContent = paymentInfo.date;
     document.querySelector(".time").textContent = paymentInfo.time;
     document.querySelector(".total").textContent = paymentInfo.total;
 }
+
+
+
+// Create notification container
+const notification = document.createElement("div");
+notification.classList.add("notification");
+
+notification.innerHTML = `
+    <div class="notification-content">
+        <p class="notification-message"></p>
+
+        <div class="notification-actions">
+            <button class="basket-btn">View Basket</button>
+        </div>
+    </div>
+`;
+
+document.body.appendChild(notification);
+
+const notificationMessage = notification.querySelector(".notification-message");
+const basketBtn = notification.querySelector(".basket-btn");
+
+let notificationTimeout;
+
+// Notification function
+function showNotification(message, showBasket = false) {
+    clearTimeout(notificationTimeout);
+    notificationMessage.textContent = message;
+
+    // Show/hide basket button
+    if (showBasket) {
+        basketBtn.style.display = "inline-block";
+    } else {
+        basketBtn.style.display = "none";
+    }
+    notification.classList.add("show");
+
+    // Auto hide after 3 seconds
+    notificationTimeout = setTimeout(() => {
+        notification.classList.remove("show");
+    }, 3000);
+}
+
+// Basket button click
+basketBtn.addEventListener("click", () => {
+    window.location.href = "basket.html";
+});
